@@ -3,6 +3,7 @@ package edu.neu.cs4500.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,6 +22,19 @@ public class UserService {
 	public List<User> findAllUsers() {
 		return users;
 	}
+	
+	@RequestMapping("/api/user/{userId}")
+	public User findUserById(
+		@PathVariable("userId") Integer id) {
+		for(User u: users) {
+			if(u.getId() == id) {
+				return u;
+			}
+		}
+		return null;
+	}
+		
+
 
 
 
